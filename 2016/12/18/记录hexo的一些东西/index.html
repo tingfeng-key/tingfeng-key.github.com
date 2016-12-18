@@ -14,7 +14,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/12/18/记录hexo的一些东西/index.html">
 <meta property="og:site_name" content="听风(@tingfeng-key)">
 <meta property="og:description" content="Hexo命令Hexo下，通过 _config.yml 设置博客，可以想象成我们用的软件里的设置一样，只是它通过一个文件列出这些参数，然后让我们填写和修改。">
-<meta property="og:updated_time" content="2016-12-18T14:57:20.105Z">
+<meta property="og:updated_time" content="2016-12-18T15:06:43.853Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记录hexo的一些东西">
 <meta name="twitter:description" content="Hexo命令Hexo下，通过 _config.yml 设置博客，可以想象成我们用的软件里的设置一样，只是它通过一个文件列出这些参数，然后让我们填写和修改。">
@@ -167,8 +167,11 @@
 <a id="more"></a>
 <p>全局设置<br>在你博客目录下有一个文件名_config.yml，打开可以配置信息。</p>
 <p>局部页面<br>在你博客目录下 \themes\你使用的主题_config.yml</p>
-<p>写博客相关命令<br>    Hexo常用命令：<br>~<br>    hexo new “postName”       #新建文章<br>    hexo new page “pageName”  #新建页面<br>    hexo generate             #生成静态页面至public目录<br>    hexo server               #开启预览访问端口（默认端口4000，’ctrl + c’关闭server）<br>    hexo deploy               #将.deploy目录部署到GitHub<br>~</p>
-<p>当然，如果每次输入那么长命令，那么一定想到用简写：<br>~<br>    hexo n == hexo new<br>    hexo g == hexo generate<br>    hexo s == hexo server<br>    hexo d == hexo deploy<br>~<br>其它的，还可以复合命令：<br>~<br>    hexo deploy -g<br>    hexo server -g<br>~<br>有时候生成的网页出错了，而生成的rss其实没有清除，那么用下面的命令，在重新生成吧<br>~<br>    $ hexo clean<br>~<br>当本地调试出现诡异现象时候，请先使用 hexo clean 清理已经生成的静态文件后重试。</p>
+<p>写博客相关命令<br>    Hexo常用命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">hexo new &quot;postName&quot;       #新建文章</div><div class="line">hexo new page &quot;pageName&quot;  #新建页面</div><div class="line">hexo generate             #生成静态页面至public目录</div><div class="line">hexo server               #开启预览访问端口（默认端口4000，&apos;ctrl + c&apos;关闭server）</div><div class="line">hexo deploy               #将.deploy目录部署到GitHub</div></pre></td></tr></table></figure></p>
+<p>当然，如果每次输入那么长命令，那么一定想到用简写：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">hexo n == hexo new</div><div class="line">hexo g == hexo generate</div><div class="line">hexo s == hexo server</div><div class="line">hexo d == hexo deploy</div></pre></td></tr></table></figure></p>
+<p>其它的，还可以复合命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo deploy -g</div><div class="line">hexo server -g</div></pre></td></tr></table></figure></p>
+<p>有时候生成的网页出错了，而生成的rss其实没有清除，那么用下面的命令，在重新生成吧<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo clean</div></pre></td></tr></table></figure></p>
+<p>当本地调试出现诡异现象时候，请先使用 hexo clean 清理已经生成的静态文件后重试。</p>
 <p>注：Hexo原理就是hexo在执行hexo generate时会在本地先把博客生成的一套静态站点放到public文件夹中，在执行hexo deploy时将其复制到.deploy文件夹中。Github的版本库通常建议同时附上README.md说明文件，但是hexo默认情况下会把所有md文件解析成html文件，所以即使你在线生成了README.md，它也会在你下一次部署时被删去。怎么解决呢？<br>在执行hexo deploy前把在本地写好的README.md文件复制到.deploy文件夹中，再去执行hexo deploy。</p>
 <p>文／iHTCboy（简书作者）<br>原文链接：<a href="http://www.jianshu.com/p/35e197cb1273" target="_blank" rel="external">http://www.jianshu.com/p/35e197cb1273</a><br>著作权归作者所有，转载请联系作者获得授权，并标注“简书作者”。</p>
 
