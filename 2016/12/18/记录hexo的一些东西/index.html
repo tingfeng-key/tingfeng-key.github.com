@@ -14,7 +14,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/12/18/记录hexo的一些东西/index.html">
 <meta property="og:site_name" content="听风(@tingfeng-key)">
 <meta property="og:description" content="Hexo命令Hexo下，通过 _config.yml 设置博客，可以想象成我们用的软件里的设置一样，只是它通过一个文件列出这些参数，然后让我们填写和修改。">
-<meta property="og:updated_time" content="2016-12-18T15:13:09.957Z">
+<meta property="og:updated_time" content="2016-12-18T15:17:39.828Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记录hexo的一些东西">
 <meta name="twitter:description" content="Hexo命令Hexo下，通过 _config.yml 设置博客，可以想象成我们用的软件里的设置一样，只是它通过一个文件列出这些参数，然后让我们填写和修改。">
@@ -163,10 +163,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Hexo命令"><a href="#Hexo命令" class="headerlink" title="Hexo命令"></a>Hexo命令</h2><p>Hexo下，通过 _config.yml 设置博客，可以想象成我们用的软件里的设置一样，只是它通过一个文件列出这些参数，然后让我们填写和修改。</p>
+        <h2 id="Hexo命令"><a href="#Hexo命令" class="headerlink" title="Hexo命令"></a>Hexo命令</h2><p>Hexo下，通过 <code>_config.yml</code> 设置博客，可以想象成我们用的软件里的设置一样，只是它通过一个文件列出这些参数，然后让我们填写和修改。</p>
 <a id="more"></a>
-<p>全局设置<br>在你博客目录下有一个文件名_config.yml，打开可以配置信息。</p>
-<p>局部页面<br>在你博客目录下 \themes\你使用的主题_config.yml</p>
+<h3 id="全局设置"><a href="#全局设置" class="headerlink" title="全局设置"></a>全局设置</h3><p>在你博客目录下有一个文件名<code>_config.yml</code>，打开可以配置信息。</p>
+<h3 id="局部页面"><a href="#局部页面" class="headerlink" title="局部页面"></a>局部页面</h3><p>在你博客目录下<code>\themes\</code>你使用的主题<code>\_config.yml</code></p>
 <p>写博客相关命令<br>    Hexo常用命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">hexo new &quot;postName&quot;       #新建文章</div><div class="line">hexo new page &quot;pageName&quot;  #新建页面</div><div class="line">hexo generate             #生成静态页面至public目录</div><div class="line">hexo server               #开启预览访问端口（默认端口4000，&apos;ctrl + c&apos;关闭server）</div><div class="line">hexo deploy               #将.deploy目录部署到GitHub</div></pre></td></tr></table></figure></p>
 <p>当然，如果每次输入那么长命令，那么一定想到用简写：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">hexo n == hexo new</div><div class="line">hexo g == hexo generate</div><div class="line">hexo s == hexo server</div><div class="line">hexo d == hexo deploy</div></pre></td></tr></table></figure></p>
 <p>其它的，还可以复合命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo deploy -g</div><div class="line">hexo server -g</div></pre></td></tr></table></figure></p>
@@ -174,8 +174,8 @@
 <p>当本地调试出现诡异现象时候，请先使用 hexo clean 清理已经生成的静态文件后重试。</p>
 <blockquote>
 <p>注：Hexo原理就是hexo在执行hexo generate时会在本地先把博客生成的一套静态站点放到public文件夹中，在执行hexo deploy时将其复制到.deploy文件夹中。Github的版本库通常建议同时附上README.md说明文件，但是hexo默认情况下会把所有md文件解析成html文件，所以即使你在线生成了README.md，它也会在你下一次部署时被删去。怎么解决呢？<br>在执行hexo deploy前把在本地写好的README.md文件复制到.deploy文件夹中，再去执行hexo deploy。</p>
-<p>(文／iHTCboy（简书作者）原文链接：<a href="http://www.jianshu.com/p/35e197cb1273" target="_blank" rel="external">http://www.jianshu.com/p/35e197cb1273</a> 著作权归作者所有，转载请联系作者获得授权，并标注“简书作者”。)</p>
 </blockquote>
+<p>(文／iHTCboy（简书作者）原文链接：<a href="http://www.jianshu.com/p/35e197cb1273" target="_blank" rel="external">http://www.jianshu.com/p/35e197cb1273</a> 著作权归作者所有，转载请联系作者获得授权，并标注“简书作者”。)</p>
 
       
     </div>
@@ -199,6 +199,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2016/12/18/markdown一些语法/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          markdown一些语法
+        
+      </div>
+    </a>
   
   
     <a href="/2016/12/18/你是否有过文字表达不了的/" id="article-nav-older" class="article-nav-link-wrap">
