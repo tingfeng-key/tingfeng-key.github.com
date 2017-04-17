@@ -14,7 +14,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/04/18/查看centos版本信息/index.html">
 <meta property="og:site_name" content="听风(@tingfeng-key)">
 <meta property="og:description" content="记录查看Linux版本信息的几个方法。">
-<meta property="og:updated_time" content="2017-04-17T16:35:01.271Z">
+<meta property="og:updated_time" content="2017-04-17T16:37:53.757Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="查看Linux版本信息">
 <meta name="twitter:description" content="记录查看Linux版本信息的几个方法。">
@@ -165,10 +165,10 @@
       
         <p>记录查看Linux版本信息的几个方法。<br><a id="more"></a></p>
 <blockquote>
-<p>Centos<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[root@localhost ~]# cat /proc/version</div><div class="line"></div><div class="line">Linux version 2.6.18-194.el5 (mockbuild@builder10.centos.org) (gcc version 4.1.2 20080704 (Red Hat 4.1.2-48)) #1 SMP Fri Apr 2 14:58:14 EDT 2010</div></pre></td></tr></table></figure></p>
+<p>Centos<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[root@localhost ~]# cat /proc/version</div><div class="line"></div><div class="line">Linux version 2.6.18-194.el5 (mockbuild@builder10.centos.org) (gcc version 4.1.2 20080704 (Red Hat 4.1.2-48)) #1 SMP Fri Apr 2 14:58:14 EDT 2010</div></pre></td></tr></table></figure></p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[root@localhost ~]# uname -a</div><div class="line"></div><div class="line">Linux localhost.localdomain 2.6.18-194.el5 #1 SMP Fri Apr 2 14:58:14 EDT 2010 x86_64 x86_64 x86_64 GNU/Linux</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@localhost ~]# uname -r</div><div class="line">2.6.18-194.el5</div></pre></td></tr></table></figure>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[root@localhost ~]# uname -a</div><div class="line"></div><div class="line">Linux localhost.localdomain 2.6.18-194.el5 #1 SMP Fri Apr 2 14:58:14 EDT 2010 x86_64 x86_64 x86_64 GNU/Linux</div></pre></td></tr></table></figure>
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@localhost ~]# uname -r</div><div class="line">2.6.18-194.el5</div></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[root@localhost ~]# lsb_release -a</div><div class="line">LSB Version:    :core-3.1-amd64:core-3.1-ia32:core-3.1-noarch:graphics-3.1-amd64:graphics-3.1-ia32:graphics-3.1-noarch</div><div class="line">Distributor ID: CentOS</div><div class="line">Description:    CentOS release 5.5 (Final)</div><div class="line">Release:        5.5</div><div class="line">Codename:      Final</div></pre></td></tr></table></figure>
 <blockquote>
 <blockquote>
