@@ -269,6 +269,25 @@
 
 
 
+    <section id="comments">
+    <!--高速版，加载速度快，使用前需测试页面的兼容性-->
+    <div id="SOHUCS" sid="你是否有过文字表达不了的"></div>
+        <script>
+            (function(){
+                var appid = '你的APP ID',
+                conf = '你的APP KEY';
+                var doc = document,
+                s = doc.createElement('script'),
+                h = doc.getElementsByTagName('head')[0] || doc.head || doc.documentElement;
+                s.type = 'text/javascript';
+                s.charset = 'utf-8';
+                s.src = 'http://assets.changyan.sohu.com/upload/changyan.js?conf='+ conf +'&appid=' + appid;
+                h.insertBefore(s,h.firstChild);
+                window.SCS_NO_IFRAME = true;
+            })()
+        </script>
+    </section>
+
 
       </div>
       <footer id="footer">
@@ -328,7 +347,7 @@
     
     	<section class="tools-section tools-section-tag">
     			<div class="widget tagcloud" id="js-tagcloud">
-    				<a href="/tags/centos/" style="font-size: 20px;">centos</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/https/" style="font-size: 10px;">https</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/分享/" style="font-size: 10px;">分享</a> <a href="/tags/随笔/" style="font-size: 15px;">随笔</a>
+    				<a href="/tags/centos/" style="font-size: 20px;">centos</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/https/" style="font-size: 10px;">https</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/yilia/" style="font-size: 10px;">yilia</a> <a href="/tags/分享/" style="font-size: 10px;">分享</a> <a href="/tags/畅言/" style="font-size: 10px;">畅言</a> <a href="/tags/随笔/" style="font-size: 15px;">随笔</a>
     			</div>
     	</section>
     

@@ -6,18 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>留在大城市还是回老家 | 听风(@tingfeng-key)</title>
+  <title>hexo yilia使用畅言评论系统 | 听风(@tingfeng-key)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="送给还在大城市奋斗的我们。">
+  <meta name="description" content="更换yilia多说评论系统为畅言评论系统">
 <meta property="og:type" content="article">
-<meta property="og:title" content="留在大城市还是回老家">
-<meta property="og:url" content="http://yoursite.com/2016/12/19/留在大城市还是回老家/index.html">
+<meta property="og:title" content="hexo yilia使用畅言评论系统">
+<meta property="og:url" content="http://yoursite.com/2017/04/17/hexo-yilia使用畅言评论系统/index.html">
 <meta property="og:site_name" content="听风(@tingfeng-key)">
-<meta property="og:description" content="送给还在大城市奋斗的我们。">
-<meta property="og:updated_time" content="2017-04-17T14:50:47.652Z">
+<meta property="og:description" content="更换yilia多说评论系统为畅言评论系统">
+<meta property="og:updated_time" content="2017-04-17T15:17:41.365Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="留在大城市还是回老家">
-<meta name="twitter:description" content="送给还在大城市奋斗的我们。">
+<meta name="twitter:title" content="hexo yilia使用畅言评论系统">
+<meta name="twitter:description" content="更换yilia多说评论系统为畅言评论系统">
   
     <link rel="alternative" href="/atom.xml" title="听风(@tingfeng-key)" type="application/atom+xml">
   
@@ -145,7 +145,7 @@
 </nav>
 
       <div class="body-wrap">
-        <article id="post-留在大城市还是回老家" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-hexo-yilia使用畅言评论系统" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <input type="hidden" class="isFancy" />
@@ -155,7 +155,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      留在大城市还是回老家
+      hexo yilia使用畅言评论系统
     </h1>
   
 
@@ -163,23 +163,24 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>送给还在大城市奋斗的我们。<br><a id="more"></a></p>
-<blockquote>
-<p><em>等等，先别暂停嘛，也许很好听呢</em></p>
-</blockquote>
-<p><audio src="http://image.itings.cn/wizzardaudio1/201212/a8c7b6db-5fbf-4e02-a581-41ecb9179b39.mp3" controls="controls" autoplay="autoplay"><br></audio><br>（文字正在码出来ing…）</p>
+        <p>更换yilia多说评论系统为畅言评论系统<br><a id="more"></a></p>
+<h2 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h2><ul>
+<li>登录进入畅言官网，获取你的畅言 app id 和 app key。</li>
+</ul>
+<h2 id="需要更换的代码（路径：themes-yilia-layout-partial-article-ejs）"><a href="#需要更换的代码（路径：themes-yilia-layout-partial-article-ejs）" class="headerlink" title="需要更换的代码（路径：themes\yilia\layout_partial\article.ejs）"></a>需要更换的代码（路径：themes\yilia\layout_partial\article.ejs）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&lt;% if (!index &amp;&amp; post.comments &amp;&amp; config.disqus_shortname)&#123; %&gt;</div><div class="line">&lt;section id=&quot;comments&quot;&gt;</div><div class="line">  &lt;div id=&quot;disqus_thread&quot;&gt;&lt;/div&gt;</div><div class="line">    &lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */</div><div class="line">    var disqus_shortname = &apos;&lt;%=config.disqus_shortname%&gt;&apos;; // required: replace example with your forum shortname</div><div class="line"></div><div class="line">    /* * * DON&apos;T EDIT BELOW THIS LINE * * */</div><div class="line">    (function() &#123;</div><div class="line">      var dsq = document.createElement(&apos;script&apos;); dsq.type = &apos;text/javascript&apos;; dsq.async = true;</div><div class="line">      dsq.src = &apos;//&apos; + disqus_shortname + &apos;.disqus.com/embed.js&apos;;</div><div class="line">      (document.getElementsByTagName(&apos;head&apos;)[0] || document.getElementsByTagName(&apos;body&apos;)[0]).appendChild(dsq);</div><div class="line">    &#125;)();</div><div class="line">  &lt;/script&gt;</div><div class="line">  &lt;noscript&gt;Please enable JavaScript to view the &lt;a href=&quot;https://disqus.com/?ref_noscript&quot;&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;</div><div class="line">&lt;/section&gt;</div><div class="line">&lt;% &#125; %&gt;</div></pre></td></tr></table></figure>
+<h2 id="更换为"><a href="#更换为" class="headerlink" title="更换为"></a>更换为</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&lt;% if (!index &amp;&amp; post.comments)&#123; %&gt;</div><div class="line">    &lt;section id=&quot;comments&quot;&gt;</div><div class="line">    &lt;!--高速版，加载速度快，使用前需测试页面的兼容性--&gt;</div><div class="line">    &lt;div id=&quot;SOHUCS&quot; sid=&quot;&lt;%= page.title %&gt;&quot;&gt;&lt;/div&gt;</div><div class="line">        &lt;script&gt;</div><div class="line">            (function()&#123;</div><div class="line">                var appid = &apos;你的APP ID&apos;,</div><div class="line">                conf = &apos;你的APP KEY&apos;;</div><div class="line">                var doc = document,</div><div class="line">                s = doc.createElement(&apos;script&apos;),</div><div class="line">                h = doc.getElementsByTagName(&apos;head&apos;)[0] || doc.head || doc.documentElement;</div><div class="line">                s.type = &apos;text/javascript&apos;;</div><div class="line">                s.charset = &apos;utf-8&apos;;</div><div class="line">                s.src = &apos;http://assets.changyan.sohu.com/upload/changyan.js?conf=&apos;+ conf +&apos;&amp;appid=&apos; + appid;</div><div class="line">                h.insertBefore(s,h.firstChild);</div><div class="line">                window.SCS_NO_IFRAME = true;</div><div class="line">            &#125;)()</div><div class="line">        &lt;/script&gt;</div><div class="line">    &lt;/section&gt;</div><div class="line">&lt;% &#125; %&gt;</div></pre></td></tr></table></figure>
 
       
     </div>
     <div class="article-info article-info-index">
       
-      <a href="/2016/12/19/留在大城市还是回老家/" class="archive-article-date">
-  	<time datetime="2016-12-18T16:26:12.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-12-19</time>
+      <a href="/2017/04/17/hexo-yilia使用畅言评论系统/" class="archive-article-date">
+  	<time datetime="2017-04-17T15:12:51.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-04-17</time>
 </a>
       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/分享/">分享</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/yilia/">yilia</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/畅言/">畅言</a></li></ul>
 	</div>
 
       
@@ -192,18 +193,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2016/12/21/centos编译nginx/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          centos编译nginx
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/12/19/https协议，程序猿你要知道的ssl证书的使用方法/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">https协议，程序猿你要知道的ssl证书的使用方法</div>
+    <a href="/2016/12/21/centos编译mysql/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">centos编译mysql</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -237,7 +229,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="留在大城市还是回老家" data-title="留在大城市还是回老家" data-url="http://yoursite.com/2016/12/19/留在大城市还是回老家/"></div>
+	<div class="ds-thread" data-thread-key="hexo-yilia使用畅言评论系统" data-title="hexo yilia使用畅言评论系统" data-url="http://yoursite.com/2017/04/17/hexo-yilia使用畅言评论系统/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -259,7 +251,7 @@
 
     <section id="comments">
     <!--高速版，加载速度快，使用前需测试页面的兼容性-->
-    <div id="SOHUCS" sid="留在大城市还是回老家"></div>
+    <div id="SOHUCS" sid="hexo yilia使用畅言评论系统"></div>
         <script>
             (function(){
                 var appid = '你的APP ID',
