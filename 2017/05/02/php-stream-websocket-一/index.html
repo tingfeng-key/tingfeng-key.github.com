@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://yoursite.com">
+  <title>php stream websocket 一 | 听风(@tingfeng-key)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="PHP常用来做web应用，主流架构有Apache和fastcgi通讯、nginx与php-fpm；有些应用也会用到socket通讯，主流框架有swoole、workerman，由于兴趣爱好，研究了php stream，谈谈在做php stream时遇到的坑">
+<meta property="og:type" content="article">
+<meta property="og:title" content="php stream websocket 一">
+<meta property="og:url" content="http://yoursite.com/2017/05/02/php-stream-websocket-一/index.html">
+<meta property="og:site_name" content="听风(@tingfeng-key)">
+<meta property="og:description" content="PHP常用来做web应用，主流架构有Apache和fastcgi通讯、nginx与php-fpm；有些应用也会用到socket通讯，主流框架有swoole、workerman，由于兴趣爱好，研究了php stream，谈谈在做php stream时遇到的坑">
+<meta property="og:updated_time" content="2017-05-02T12:18:17.318Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="php stream websocket 一">
+<meta name="twitter:description" content="PHP常用来做web应用，主流架构有Apache和fastcgi通讯、nginx与php-fpm；有些应用也会用到socket通讯，主流框架有swoole、workerman，由于兴趣爱好，研究了php stream，谈谈在做php stream时遇到的坑">
+  
+    <link rel="alternative" href="/atom.xml" title="听风(@tingfeng-key)" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://q.qlogo.cn/qqapp/100229475/EB215F3284CA468197E354FD561F70B3/100">
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="http://q.qlogo.cn/qqapp/100229475/EB215F3284CA468197E354FD561F70B3/100" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">tingfeng-key</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">与一份真情，共度三生</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/tags/随笔/">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">友链</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="3" href="javascript:void(0)">关于</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/tingfeng-key" title="github">github</a>
+		        
+					<a class="weibo" target="_blank" href="http://weibo.com/tingfengkey/home" title="weibo">weibo</a>
+		        
+					<a class="rss" target="_blank" href="#" title="rss">rss</a>
+		        
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/tingfeng-91-52" title="zhihu">zhihu</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">tingfeng-key</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="http://q.qlogo.cn/qqapp/100229475/EB215F3284CA468197E354FD561F70B3/100" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">tingfeng-key</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">与一份真情，共度三生</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/tags/随笔/">随笔</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/tingfeng-key" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/tingfengkey/home" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/tingfeng-91-52" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-php-stream-websocket-一" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      php stream websocket 一
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>PHP常用来做web应用，主流架构有Apache和fastcgi通讯、nginx与php-fpm；<br>有些应用也会用到socket通讯，主流框架有swoole、workerman，由于兴趣爱好，研究了php stream，谈谈在做php stream时遇到的坑<br><a id="more"></a></p>
+<h3 id="基于laravel-artisan-的命令Class"><a href="#基于laravel-artisan-的命令Class" class="headerlink" title="基于laravel artisan 的命令Class"></a>基于laravel artisan 的命令Class</h3><p><em>先贴代码，之后又时间再讲解</em><br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Console</span>\<span class="title">Commands</span>;</div><div class="line"></div><div class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Console</span>\<span class="title">Command</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Socket</span> <span class="keyword">extends</span> <span class="title">Command</span></span></div><div class="line">&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * The name and signature of the console command.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@var</span> string</div><div class="line">     */</div><div class="line">    <span class="keyword">protected</span> $signature = <span class="string">'server:start'</span>;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * The console command description.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@var</span> string</div><div class="line">     */</div><div class="line">    <span class="keyword">protected</span> $description = <span class="string">'Command description'</span>;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Create a new command instance.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@return</span> void</div><div class="line">     */</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">parent</span>::__construct();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Execute the console command.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@return</span> mixed</div><div class="line">     */</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        $master = stream_socket_server(<span class="string">"tcp://127.0.0.1:8081"</span>, $errno, $errstr);</div><div class="line">        <span class="keyword">if</span> (!$master) &#123;</div><div class="line">            <span class="keyword">echo</span> <span class="string">"$errstr ($errno)&lt;br /&gt;\n"</span>;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            $sockets = [];</div><div class="line">            $block = stream_set_blocking($master, <span class="number">0</span>);</div><div class="line">            $sockets[] = $master;</div><div class="line">            <span class="keyword">while</span> (<span class="keyword">true</span>)</div><div class="line">            &#123;</div><div class="line">                $write = <span class="keyword">null</span>;</div><div class="line">                $error = <span class="keyword">null</span>;</div><div class="line">                stream_select($sockets, $write, $error, <span class="keyword">null</span>);</div><div class="line">                <span class="keyword">foreach</span> ($sockets <span class="keyword">as</span> $key =&gt; $socket)</div><div class="line">                &#123;</div><div class="line">                    var_dump($socket);</div><div class="line">                    <span class="keyword">if</span>($socket === $master)</div><div class="line">                    &#123;</div><div class="line">                        $conn = stream_socket_accept($socket);</div><div class="line">                        <span class="keyword">if</span>($conn &lt; <span class="number">0</span>)&#123; <span class="keyword">continue</span>; &#125;</div><div class="line"></div><div class="line">                        $buffer = stream_socket_recvfrom($conn, <span class="number">1024</span>);</div><div class="line">                        $headData = <span class="keyword">self</span>::parseHead($buffer);</div><div class="line">                        $handshake_message = <span class="keyword">self</span>::dohandshake($headData[<span class="string">'Sec-WebSocket-Key'</span>]);</div><div class="line">                        stream_socket_sendto ($conn,  $handshake_message);</div><div class="line">                        array_push($sockets, $conn);</div><div class="line">                    &#125;<span class="keyword">else</span></div><div class="line">                    &#123;</div><div class="line">                        $buffer = stream_socket_recvfrom($socket, <span class="number">1024</span>);</div><div class="line">                        <span class="keyword">if</span>(strlen($buffer) === <span class="number">0</span>)</div><div class="line">                        &#123;</div><div class="line">                            <span class="keyword">echo</span> <span class="keyword">self</span>::decode($buffer);</div><div class="line">                        &#125;<span class="keyword">else</span>&#123;</div><div class="line">                            $content = <span class="keyword">self</span>::decode($buffer);</div><div class="line">                            <span class="keyword">if</span>(is_null($content))</div><div class="line">                            &#123;</div><div class="line">                                var_dump($error);</div><div class="line">                                <span class="comment">//unset($sockets[$key]);</span></div><div class="line">                                <span class="comment">//fclose($socket);</span></div><div class="line">                            &#125;<span class="keyword">else</span>&#123;</div><div class="line">                                var_dump($error);</div><div class="line">                                var_dump(<span class="keyword">self</span>::decode($buffer));</div><div class="line">                                stream_socket_sendto ($socket,  <span class="keyword">self</span>::frame(<span class="string">'你好啊'</span>));</div><div class="line">                            &#125;</div><div class="line">                        &#125;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">frame</span><span class="params">($s)</span> </span>&#123;</div><div class="line">        $a = str_split($s, <span class="number">125</span>);</div><div class="line">        <span class="keyword">if</span> (count($a) == <span class="number">1</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="string">"\x81"</span> . chr(strlen($a[<span class="number">0</span>])) . $a[<span class="number">0</span>];</div><div class="line">        &#125;</div><div class="line">        $ns = <span class="string">""</span>;</div><div class="line">        <span class="keyword">foreach</span> ($a <span class="keyword">as</span> $o) &#123;</div><div class="line">            $ns .= <span class="string">"\x81"</span> . chr(strlen($o)) . $o;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> $ns;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">decode</span><span class="params">($buffer)</span>  </span>&#123;</div><div class="line">        $len = $masks = $data = $decoded = <span class="keyword">null</span>;</div><div class="line">        $len = ord($buffer[<span class="number">1</span>]) &lt; <span class="number">127</span>;</div><div class="line">        <span class="keyword">if</span> ($len === <span class="number">126</span>)  &#123;</div><div class="line">            $masks = substr($buffer, <span class="number">4</span>, <span class="number">4</span>);</div><div class="line">            $data = substr($buffer, <span class="number">8</span>);</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> ($len === <span class="number">127</span>)  &#123;</div><div class="line">            $masks = substr($buffer, <span class="number">10</span>, <span class="number">4</span>);</div><div class="line">            $data = substr($buffer, <span class="number">14</span>);</div><div class="line">        &#125; <span class="keyword">else</span>  &#123;</div><div class="line">            $masks = substr($buffer, <span class="number">2</span>, <span class="number">4</span>);</div><div class="line">            $data = substr($buffer, <span class="number">6</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> ($index = <span class="number">0</span>; $index &lt; strlen($data); $index++) &#123;</div><div class="line">            $decoded .= $data[$index] ^ $masks[$index % <span class="number">4</span>];</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> $decoded;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">dohandshake</span><span class="params">($key)</span></span></div><div class="line">    &#123;</div><div class="line">        $new_key = base64_encode(sha1($key . <span class="string">"258EAFA5-E914-47DA-95CA-C5AB0DC85B11"</span>, <span class="keyword">true</span>));</div><div class="line">        $handshake_message = <span class="string">"HTTP/1.1 101 Switching Protocols\r\n"</span>;</div><div class="line">        $handshake_message .= <span class="string">"Upgrade: websocket\r\n"</span>;</div><div class="line">        $handshake_message .= <span class="string">"Sec-WebSocket-Version: 13\r\n"</span>;</div><div class="line">        $handshake_message .= <span class="string">"Connection: Upgrade\r\n"</span>;</div><div class="line">        $handshake_message .= <span class="string">"Server: workerman/1.1\r\n"</span>;</div><div class="line">        $handshake_message .= <span class="string">"Sec-WebSocket-Accept: "</span> . $new_key . <span class="string">"\r\n\r\n"</span>;</div><div class="line">        <span class="keyword">return</span> $handshake_message;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">parseHead</span><span class="params">($buffer)</span></span>&#123;</div><div class="line">        $dataArr = explode(<span class="string">'</span></div><div class="line">', $buffer);</div><div class="line">        $dataKeyVals = [];</div><div class="line">        <span class="keyword">foreach</span> ($dataArr <span class="keyword">as</span> $key =&gt; $val)</div><div class="line">        &#123;</div><div class="line">            $trim = trim($val);</div><div class="line">            <span class="keyword">if</span>(<span class="keyword">empty</span>($trim))&#123;</div><div class="line">                <span class="keyword">unset</span>($dataArr[$key]);</div><div class="line">            &#125;<span class="keyword">else</span>&#123;</div><div class="line">                <span class="keyword">if</span>(strpos($val, <span class="string">':'</span>) &gt; <span class="number">0</span>)</div><div class="line">                &#123;</div><div class="line">                    $explode = explode(<span class="string">': '</span>, $trim);</div><div class="line">                    $dataKeyVals[$explode[<span class="number">0</span>]] = $explode[<span class="number">1</span>];</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> $dataKeyVals;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2017/05/02/php-stream-websocket-一/" class="archive-article-date">
+  	<time datetime="2017-05-02T12:07:38.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-05-02</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/websocket/">websocket</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2017/04/18/查看centos版本信息/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">查看Linux版本信息</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+    <section id="comments">
+    <!--高速版，加载速度快，使用前需测试页面的兼容性-->
+    <div id="SOHUCS" sid="php stream websocket 一"></div>
+        <script>
+            (function(){
+                var appid = 'cysXcUQEm',
+                conf = 'prod_726a909befa5b2d9187dc6413e24479a';
+                var doc = document,
+                s = doc.createElement('script'),
+                h = doc.getElementsByTagName('head')[0] || doc.head || doc.documentElement;
+                s.type = 'text/javascript';
+                s.charset = 'utf-8';
+                s.src = 'http://assets.changyan.sohu.com/upload/changyan.js?conf='+ conf +'&appid=' + appid;
+                h.insertBefore(s,h.firstChild);
+                window.SCS_NO_IFRAME = true;
+            })()
+        </script>
+    </section>
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 tingfeng-key
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+      <li data-hook="tools-section-friends"><span class="text">友链</span><i class="icon-link"></i></li>
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/centos/" style="font-size: 20px;">centos</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/https/" style="font-size: 10px;">https</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/php/" style="font-size: 15px;">php</a> <a href="/tags/websocket/" style="font-size: 10px;">websocket</a> <a href="/tags/yilia/" style="font-size: 10px;">yilia</a> <a href="/tags/分享/" style="font-size: 10px;">分享</a> <a href="/tags/畅言/" style="font-size: 10px;">畅言</a> <a href="/tags/随笔/" style="font-size: 15px;">随笔</a>
+    			</div>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends">
+  		
+  			<div class="friends-wrap" id="js-friends">
+  			
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://tristana.cn/">小不点</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.9icode.net/">FBlog</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.m5e.cn/">王炫植</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.imim.pw/">吟梦</a>
+  	        
+  	        </div>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">学习、记录、总结、分享</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>
