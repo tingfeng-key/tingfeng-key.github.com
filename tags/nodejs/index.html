@@ -6,18 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>centos编译mysql | 听风(@tingfeng-key)</title>
+  <title>Tag: nodejs | 听风(@tingfeng-key)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录编译过程及编译过程中出现的错误和处理方案。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="centos编译mysql">
-<meta property="og:url" content="http://yoursite.com/2016/12/21/centos编译mysql/index.html">
+  <meta name="description" content="记录点滴记录，分享生活，一个码农的博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="听风(@tingfeng-key)">
+<meta property="og:url" content="http://yoursite.com/tags/nodejs/index.html">
 <meta property="og:site_name" content="听风(@tingfeng-key)">
-<meta property="og:description" content="记录编译过程及编译过程中出现的错误和处理方案。">
-<meta property="og:updated_time" content="2017-04-17T16:24:14.045Z">
+<meta property="og:description" content="记录点滴记录，分享生活，一个码农的博客">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="centos编译mysql">
-<meta name="twitter:description" content="记录编译过程及编译过程中出现的错误和处理方案。">
+<meta name="twitter:title" content="听风(@tingfeng-key)">
+<meta name="twitter:description" content="记录点滴记录，分享生活，一个码农的博客">
   
     <link rel="alternative" href="/atom.xml" title="听风(@tingfeng-key)" type="application/atom+xml">
   
@@ -157,209 +156,60 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-centos编译mysql" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      centos编译mysql
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2017/05/21/nodejs淘宝源/" class="archive-article-date">
+  	<time datetime="2017-05-21T14:07:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-21</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2017/05/21/nodejs淘宝源/">nodejs淘宝源</a>
     </h1>
   
 
-        
-        <a href="/2016/12/21/centos编译mysql/" class="archive-article-date">
-  	<time datetime="2016-12-21T07:53:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>记录编译过程及编译过程中出现的错误和处理方案。<br><a id="more"></a></p>
-<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">centos 6.5</div><div class="line">mysql5.6.35</div></pre></td></tr></table></figure>
-<h2 id="获取源文件"><a href="#获取源文件" class="headerlink" title="获取源文件"></a>获取源文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget http://mirrors.sohu.com/mysql/MySQL-5.6/mysql-5.6.35.tar.gz</div></pre></td></tr></table></figure>
-<h2 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">tar -zxvf mysql-5.6.35.tar.gz</div><div class="line">cd mysql-5.6.35</div></pre></td></tr></table></figure>
-<h2 id="编译配置（需要安装cmake：yum-install-cmake）"><a href="#编译配置（需要安装cmake：yum-install-cmake）" class="headerlink" title="编译配置（需要安装cmake：yum install cmake）"></a>编译配置（需要安装cmake：yum install cmake）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">cmake -DCMAKE_INSTALL_PREFIX=/server/mysql56 \</div><div class="line">-DMYSQL_DATADIR=/server/mysql56/data \</div><div class="line">-DWITH_INNOBASE_STORAGE_ENGINE=1 \</div><div class="line">-DWITH_ARCHIVE_STORAGE_ENGINE=1 \</div><div class="line">-DWITH_BLACKHOLE_STORAGE_ENGINE=1 \</div><div class="line">-DWITH_MYISAM_STORAGE_ENGINE=1 \</div><div class="line">-DEXTRA_CHARSETS=all \</div><div class="line">-DDEFAULT_CHARSET=utf8 \</div><div class="line">-DDEFAULT_COLLATION=utf8_general_ci \</div><div class="line">-DMYSQL_USER=root \</div><div class="line">-DWITH_DEBUG=0 \</div><div class="line">-DENABLE_PROFILING=0 \</div></pre></td></tr></table></figure>
-<h2 id="编译（时间比较久）"><a href="#编译（时间比较久）" class="headerlink" title="编译（时间比较久）"></a>编译（时间比较久）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">make &amp;&amp; make install</div></pre></td></tr></table></figure>
-<h2 id="配置mysql"><a href="#配置mysql" class="headerlink" title="配置mysql"></a>配置mysql</h2><h3 id="配置用户（查看是否有mysql用户和mysql用户组）"><a href="#配置用户（查看是否有mysql用户和mysql用户组）" class="headerlink" title="配置用户（查看是否有mysql用户和mysql用户组）"></a>配置用户（查看是否有mysql用户和mysql用户组）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cat /etc/passwd 查看用户列表</div><div class="line">cat /etc/group  查看用户组列表</div></pre></td></tr></table></figure>
-<h3 id="添加mysql用户和mysql用户组"><a href="#添加mysql用户和mysql用户组" class="headerlink" title="添加mysql用户和mysql用户组"></a>添加mysql用户和mysql用户组</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">groupadd mysql</div><div class="line">useradd -r -g mysql mysql</div></pre></td></tr></table></figure>
-<h3 id="确认一下创建结果"><a href="#确认一下创建结果" class="headerlink" title="确认一下创建结果"></a>确认一下创建结果</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">id mysql</div></pre></td></tr></table></figure>
-<h3 id="修改mysql目录权限"><a href="#修改mysql目录权限" class="headerlink" title="修改mysql目录权限"></a>修改mysql目录权限</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chown -R /server/mysql56</div></pre></td></tr></table></figure>
-<h3 id="安装运行MySQL测试脚本需要的perl"><a href="#安装运行MySQL测试脚本需要的perl" class="headerlink" title="安装运行MySQL测试脚本需要的perl"></a>安装运行MySQL测试脚本需要的perl</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install perl</div></pre></td></tr></table></figure>
-<h3 id="进入安装路径"><a href="#进入安装路径" class="headerlink" title="进入安装路径"></a>进入安装路径</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd /server/mysql56</div></pre></td></tr></table></figure>
-<h3 id="执行初始化配置脚本，创建系统自带的数据库和表"><a href="#执行初始化配置脚本，创建系统自带的数据库和表" class="headerlink" title="执行初始化配置脚本，创建系统自带的数据库和表"></a>执行初始化配置脚本，创建系统自带的数据库和表</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">scripts/mysql_install_db \</div><div class="line">--basedir=/server/mysql56 \</div><div class="line">--datadir=/server/mysql56/data \</div><div class="line">--user=mysql</div></pre></td></tr></table></figure>
-<h2 id="启动mysql服务（添加服务，拷贝服务脚本到init-d目录，并设置开机启动）"><a href="#启动mysql服务（添加服务，拷贝服务脚本到init-d目录，并设置开机启动）" class="headerlink" title="启动mysql服务（添加服务，拷贝服务脚本到init.d目录，并设置开机启动）"></a>启动mysql服务（添加服务，拷贝服务脚本到init.d目录，并设置开机启动）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cp support-files/mysql.server /etc/init.d/mysql</div><div class="line">chkconfig mysql on</div><div class="line">service mysql start  --启动MySQL</div></pre></td></tr></table></figure>
-<h2 id="设置mysql环境变量（修改-etc-profile文件，在文件末尾添加）"><a href="#设置mysql环境变量（修改-etc-profile文件，在文件末尾添加）" class="headerlink" title="设置mysql环境变量（修改/etc/profile文件，在文件末尾添加）"></a>设置mysql环境变量（修改/etc/profile文件，在文件末尾添加）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">PATH=/server/mysql56/bin:$PATH</div><div class="line">export PATH</div><div class="line">source /etc/profile</div></pre></td></tr></table></figure>
-<h2 id="root登录、修改密码、允许远程访问"><a href="#root登录、修改密码、允许远程访问" class="headerlink" title="root登录、修改密码、允许远程访问"></a>root登录、修改密码、允许远程访问</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mysql -uroot  </div><div class="line">mysql&gt; SET PASSWORD = PASSWORD(&apos;123456&apos;);</div><div class="line">mysql&gt; GRANT ALL PRIVILEGES ON *.* TO &apos;root&apos;@&apos;%&apos; IDENTIFIED BY &apos;123456&apos; WITH GRANT OPTION;</div></pre></td></tr></table></figure>
-<h2 id="设置防火墙（开放3306端口-编辑-etc-sysconfig-iptables）"><a href="#设置防火墙（开放3306端口-编辑-etc-sysconfig-iptables）" class="headerlink" title="设置防火墙（开放3306端口,编辑/etc/sysconfig/iptables）"></a>设置防火墙（开放3306端口,编辑/etc/sysconfig/iptables）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">-A INPUT -m state --state NEW -m tcp -p -dport 3306 -j ACCEPT</div></pre></td></tr></table></figure>
-<h2 id="重启防火墙"><a href="#重启防火墙" class="headerlink" title="重启防火墙"></a>重启防火墙</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service iptables restart</div></pre></td></tr></table></figure>
-<blockquote>
-<p>*注：必须在-A RH-Firewall-1-INPUT -j REJECT –reject-with icmp-host-prohibited之前加入</p>
-</blockquote>
-<h2 id="遇到的错误（解决方法；注：记得删除rm-CMakeCache-txt）"><a href="#遇到的错误（解决方法；注：记得删除rm-CMakeCache-txt）" class="headerlink" title="遇到的错误（解决方法；注：记得删除rm CMakeCache.txt）"></a>遇到的错误（解决方法；注：记得删除rm CMakeCache.txt）</h2><ul>
-<li><p>问题1（yum install ncurses-devel）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">-- Could NOT find Curses (missing:  CURSES_LIBRARY CURSES_INCLUDE_PATH)</div><div class="line">CMake Error at cmake/readline.cmake:82 (MESSAGE):</div><div class="line">  Curses library not found.  Please install appropriate package,</div><div class="line"></div><div class="line">      remove CMakeCache.txt and rerun cmake.On Debian/Ubuntu, package name is libncurses5-dev, on Redhat and derivates it is ncurses-devel.</div><div class="line">Call Stack (most recent call first):</div><div class="line">  cmake/readline.cmake:126 (FIND_CURSES)</div><div class="line">  cmake/readline.cmake:216 (MYSQL_USE_BUNDLED_LIBEDIT)</div><div class="line">  CMakeLists.txt:250 (MYSQL_CHECK_READLINE)</div></pre></td></tr></table></figure>
-</li>
-<li><p>问题2（yum install bison）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Warning: Bison executable not found in PATH</div></pre></td></tr></table></figure>
-</li>
-<li><p>问题3（yum install gcc gcc-c++）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">CMake Error at /usr/share/cmake/Modules/CMakeCXXInformation.cmake:37 (get_filename_component):</div><div class="line">  get_filename_component called with incorrect number of arguments</div><div class="line">Call Stack (most recent call first):</div><div class="line">  CMakeLists.txt:3 (PROJECT)</div><div class="line">CMake Error: CMAKE_CXX_COMPILER not set, after EnableLanguage</div><div class="line">CMake Error: Internal CMake error, TryCompile configure of cmake failed</div><div class="line">-- Performing Test HAVE_PEERCRED - Failed</div><div class="line">-- Configuring incomplete, errors occurred!</div><div class="line">See also &quot;/usr/local/src/mysql-5.5.33/CMakeFiles/CMakeOutput.log&quot;.</div><div class="line">See also &quot;/usr/local/src/mysql-5.5.33/CMakeFiles/CMakeError.log&quot;.</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="cmake参数"><a href="#cmake参数" class="headerlink" title="cmake参数"></a>cmake参数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">-DCMAKE_INSTALL_PREFIX= 指向mysql安装目录</div><div class="line">-DINSTALL_SBINDIR=sbin 指向可执行文件目录（prefix/sbin）</div><div class="line">-DMYSQL_DATADIR=/var/lib/mysql 指向mysql数据文件目录（/var/lib/mysql）</div><div class="line">-DSYSCONFDIR=/etc/mysql 指向mysql配置文件目录（/etc/mysql）</div><div class="line">-DINSTALL_PLUGINDIR=lib/mysql/plugin 指向插件目录（prefix/lib/mysql/plugin）</div><div class="line">-DINSTALL_MANDIR=share/man 指向man文档目录（prefix/share/man）</div><div class="line">-DINSTALL_SHAREDIR=share 指向aclocal/mysql.m4安装目录（prefix/share）</div><div class="line">-DINSTALL_LIBDIR=lib/mysql 指向对象代码库目录（prefix/lib/mysql）</div><div class="line">-DINSTALL_INCLUDEDIR=include/mysql 指向头文件目录（prefix/include/mysql）</div><div class="line">-DINSTALL_INFODIR=share/info 指向info文档存放目录（prefix/share/info）</div><div class="line">prefix官方推荐设为/usr</div><div class="line">Storage Engine相关</div><div class="line">类型csv,myisam,myisammrg,heap,innobase,archive,blackhole</div><div class="line">若想启用某个引擎的支持：-DWITH_&lt;ENGINE&gt;_STORAGE_ENGINE=1</div><div class="line">如：</div><div class="line">-DWITH_INNOBASE_STORAGE_ENGINE=1</div><div class="line">-DWITH_ARCHIVE_STORAGE_ENGINE=1</div><div class="line">-DWITH_BLACKHOLE_STORAGE_ENGINE=1</div><div class="line">若想禁用某个引擎的支持：-DWITHOUT_&lt;ENGINE&gt;_STORAGE_ENGINE=1</div><div class="line">如：</div><div class="line">-DWITHOUT_EXAMPLE_STORAGE_ENGINE=1</div><div class="line">-DWITHOUT_FEDERATED_STORAGE_ENGINE=1</div><div class="line">-DWITHOUT_PARTITION_STORAGE_ENGINE=1</div><div class="line">Library相关</div><div class="line">-DWITH_READLINE=1 启用readline库支持（提供可编辑的命令行）</div><div class="line">-DWITH_SSL=system 启用ssl库支持（安全套接层）</div><div class="line">-DWITH_ZLIB=system 启用libz库支持（zib、gzib相关）</div><div class="line">-DWTIH_LIBWRAP=0 禁用libwrap库（实现了通用TCP包装的功能，为网络服务守护进程使用）</div><div class="line">-DMYSQL_TCP_PORT=3306 指定TCP端口为3306</div><div class="line">-DMYSQL_UNIX_ADDR=/tmp/mysqld.sock 指定mysql.sock路径</div><div class="line">-DENABLED_LOCAL_INFILE=1 启用本地数据导入支持</div><div class="line">-DEXTRA_CHARSETS=all 启用额外的字符集类型（默认为all）</div><div class="line">-DDEFAULT_CHARSET=utf8 指定默认的字符集为utf8</div><div class="line">-DDEFAULT_COLLATION=utf8_general_ci 设定默认排序规则（utf8_general_ci快速/utf8_unicode_ci准确）</div><div class="line">-DWITH_EMBEDDED_SERVER=1 编译嵌入式服务器支持</div><div class="line">-DMYSQL_USER=mysql 指定mysql用户(默认为mysql)</div><div class="line">-DWITH_DEBUG=0 禁用debug（默认为禁用）</div><div class="line">-DENABLE_PROFILING=0 禁用Profiling分析（默认为开启）</div><div class="line">-DWITH_COMMENT=&apos;string&apos; 一个关于编译环境的描述性注释</div></pre></td></tr></table></figure>
-<p>编译参考：<a href="http://www.cnblogs.com/codingthings/p/4693506.html" target="_blank" rel="external">http://www.cnblogs.com/codingthings/p/4693506.html</a></p>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">centos</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">nodejs</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/12/21/centos编译mysql/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2017/04/17/hexo-yilia使用畅言评论系统/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          hexo yilia使用畅言评论系统
-        
-      </div>
-    </a>
   
   
-    <a href="/2016/12/21/centos编译php/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">centos编译php</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-
-
-
-  
-  
+    </div></section>
   
 
-  
-  <div id="SOHUCS" sid="centos编译mysql" ></div> 
-<script type="text/javascript"> 
-(function(){ 
-var appid = "cysXcUQEm"; 
-var conf = "prod_726a909befa5b2d9187dc6413e24479a"; 
-var width = window.innerWidth || document.documentElement.clientWidth; 
-if (width < 960) { 
-window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("http://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
-  
-
-  
+    
 
 
           </div>
@@ -382,9 +232,9 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
