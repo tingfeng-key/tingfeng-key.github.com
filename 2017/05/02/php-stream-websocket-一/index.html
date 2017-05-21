@@ -14,7 +14,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/05/02/php-stream-websocket-一/index.html">
 <meta property="og:site_name" content="听风(@tingfeng-key)">
 <meta property="og:description" content="PHP常用来做web应用，主流架构有Apache和fastcgi通讯、nginx与php-fpm；有些应用也会用到socket通讯，主流框架有swoole、workerman，由于兴趣爱好，研究了php stream，谈谈在做php stream时遇到的坑">
-<meta property="og:updated_time" content="2017-05-02T12:25:16.946Z">
+<meta property="og:updated_time" content="2017-05-21T12:53:03.485Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="php stream websocket 一">
 <meta name="twitter:description" content="PHP常用来做web应用，主流架构有Apache和fastcgi通讯、nginx与php-fpm；有些应用也会用到socket通讯，主流框架有swoole、workerman，由于兴趣爱好，研究了php stream，谈谈在做php stream时遇到的坑">
@@ -68,10 +68,6 @@
     		
     			
     			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
-    			
-            
-    			
-    			<a q-on="click: openSlider(e, 'tagcloud')" href="javascript:void(0)">标签</a>
     			
             
     			
@@ -183,6 +179,8 @@
       
         <p>PHP常用来做web应用，主流架构有Apache和fastcgi通讯、nginx与php-fpm；<br>有些应用也会用到socket通讯，主流框架有swoole、workerman，由于兴趣爱好，研究了php stream，谈谈在做php stream时遇到的坑<br><a id="more"></a></p>
 <h3 id="基于laravel-artisan-的命令Class"><a href="#基于laravel-artisan-的命令Class" class="headerlink" title="基于laravel artisan 的命令Class"></a>基于laravel artisan 的命令Class</h3><p><em>先贴代码，之后又时间再讲解</em><br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Console</span>\<span class="title">Commands</span>;</div><div class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Console</span>\<span class="title">Command</span>;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Socket</span> <span class="keyword">extends</span> <span class="title">Command</span></span></div><div class="line">&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * The name and signature of the console command.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@var</span> string</div><div class="line">     */</div><div class="line">    <span class="keyword">protected</span> $signature = <span class="string">'server:start'</span>;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * The console command description.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@var</span> string</div><div class="line">     */</div><div class="line">    <span class="keyword">protected</span> $description = <span class="string">'Command description'</span>;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Create a new command instance.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@return</span> void</div><div class="line">     */</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">parent</span>::__construct();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Execute the console command.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@return</span> mixed</div><div class="line">     */</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        $master = stream_socket_server(<span class="string">"tcp://127.0.0.1:8081"</span>, $errno, $errstr);</div><div class="line">        <span class="keyword">if</span> (!$master) &#123;</div><div class="line">            <span class="keyword">echo</span> <span class="string">"$errstr ($errno)&lt;br /&gt;\n"</span>;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            $sockets = [];</div><div class="line">            $block = stream_set_blocking($master, <span class="number">0</span>);</div><div class="line">            $sockets[] = $master;</div><div class="line">            <span class="keyword">while</span> (<span class="keyword">true</span>)</div><div class="line">            &#123;</div><div class="line">                $write = <span class="keyword">null</span>;</div><div class="line">                $error = <span class="keyword">null</span>;</div><div class="line">                stream_select($sockets, $write, $error, <span class="keyword">null</span>);</div><div class="line">                <span class="keyword">foreach</span> ($sockets <span class="keyword">as</span> $key =&gt; $socket)</div><div class="line">                &#123;</div><div class="line">                    var_dump($socket);</div><div class="line">                    <span class="keyword">if</span>($socket === $master)</div><div class="line">                    &#123;</div><div class="line">                        $conn = stream_socket_accept($socket);</div><div class="line">                        <span class="keyword">if</span>($conn &lt; <span class="number">0</span>)&#123; <span class="keyword">continue</span>; &#125;</div><div class="line"></div><div class="line">                        $buffer = stream_socket_recvfrom($conn, <span class="number">1024</span>);</div><div class="line">                        $headData = <span class="keyword">self</span>::parseHead($buffer);</div><div class="line">                        $handshake_message = <span class="keyword">self</span>::dohandshake($headData[<span class="string">'Sec-WebSocket-Key'</span>]);</div><div class="line">                        stream_socket_sendto ($conn,  $handshake_message);</div><div class="line">                        array_push($sockets, $conn);</div><div class="line">                    &#125;<span class="keyword">else</span></div><div class="line">                    &#123;</div><div class="line">                        $buffer = stream_socket_recvfrom($socket, <span class="number">1024</span>);</div><div class="line">                        <span class="keyword">if</span>(strlen($buffer) === <span class="number">0</span>)</div><div class="line">                        &#123;</div><div class="line">                            <span class="keyword">echo</span> <span class="keyword">self</span>::decode($buffer);</div><div class="line">                        &#125;<span class="keyword">else</span>&#123;</div><div class="line">                            $content = <span class="keyword">self</span>::decode($buffer);</div><div class="line">                            <span class="keyword">if</span>(is_null($content))</div><div class="line">                            &#123;</div><div class="line">                                var_dump($error);</div><div class="line">                                <span class="comment">//unset($sockets[$key]);</span></div><div class="line">                                <span class="comment">//fclose($socket);</span></div><div class="line">                            &#125;<span class="keyword">else</span>&#123;</div><div class="line">                                var_dump($error);</div><div class="line">                                var_dump(<span class="keyword">self</span>::decode($buffer));</div><div class="line">                                stream_socket_sendto ($socket,  <span class="keyword">self</span>::frame(<span class="string">'你好啊'</span>));</div><div class="line">                            &#125;</div><div class="line">                        &#125;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">frame</span><span class="params">($s)</span> </span>&#123;</div><div class="line">        $a = str_split($s, <span class="number">125</span>);</div><div class="line">        <span class="keyword">if</span> (count($a) == <span class="number">1</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="string">"\x81"</span> . chr(strlen($a[<span class="number">0</span>])) . $a[<span class="number">0</span>];</div><div class="line">        &#125;</div><div class="line">        $ns = <span class="string">""</span>;</div><div class="line">        <span class="keyword">foreach</span> ($a <span class="keyword">as</span> $o) &#123;</div><div class="line">            $ns .= <span class="string">"\x81"</span> . chr(strlen($o)) . $o;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> $ns;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">decode</span><span class="params">($buffer)</span>  </span>&#123;</div><div class="line">        $len = $masks = $data = $decoded = <span class="keyword">null</span>;</div><div class="line">        $len = ord($buffer[<span class="number">1</span>]) &lt; <span class="number">127</span>;</div><div class="line">        <span class="keyword">if</span> ($len === <span class="number">126</span>)  &#123;</div><div class="line">            $masks = substr($buffer, <span class="number">4</span>, <span class="number">4</span>);</div><div class="line">            $data = substr($buffer, <span class="number">8</span>);</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> ($len === <span class="number">127</span>)  &#123;</div><div class="line">            $masks = substr($buffer, <span class="number">10</span>, <span class="number">4</span>);</div><div class="line">            $data = substr($buffer, <span class="number">14</span>);</div><div class="line">        &#125; <span class="keyword">else</span>  &#123;</div><div class="line">            $masks = substr($buffer, <span class="number">2</span>, <span class="number">4</span>);</div><div class="line">            $data = substr($buffer, <span class="number">6</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> ($index = <span class="number">0</span>; $index &lt; strlen($data); $index++) &#123;</div><div class="line">            $decoded .= $data[$index] ^ $masks[$index % <span class="number">4</span>];</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> $decoded;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">dohandshake</span><span class="params">($key)</span></span></div><div class="line">    &#123;</div><div class="line">        $new_key = base64_encode(sha1($key . <span class="string">"258EAFA5-E914-47DA-95CA-C5AB0DC85B11"</span>, <span class="keyword">true</span>));</div><div class="line">        $handshake_message = <span class="string">"HTTP/1.1 101 Switching Protocols\r\n"</span>;</div><div class="line">        $handshake_message .= <span class="string">"Upgrade: websocket\r\n"</span>;</div><div class="line">        $handshake_message .= <span class="string">"Sec-WebSocket-Version: 13\r\n"</span>;</div><div class="line">        $handshake_message .= <span class="string">"Connection: Upgrade\r\n"</span>;</div><div class="line">        $handshake_message .= <span class="string">"Server: workerman/1.1\r\n"</span>;</div><div class="line">        $handshake_message .= <span class="string">"Sec-WebSocket-Accept: "</span> . $new_key . <span class="string">"\r\n\r\n"</span>;</div><div class="line">        <span class="keyword">return</span> $handshake_message;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">parseHead</span><span class="params">($buffer)</span></span>&#123;</div><div class="line">        $dataArr = explode(<span class="string">'</span></div><div class="line">', $buffer);</div><div class="line">        $dataKeyVals = [];</div><div class="line">        <span class="keyword">foreach</span> ($dataArr <span class="keyword">as</span> $key =&gt; $val)</div><div class="line">        &#123;</div><div class="line">            $trim = trim($val);</div><div class="line">            <span class="keyword">if</span>(<span class="keyword">empty</span>($trim))&#123;</div><div class="line">                <span class="keyword">unset</span>($dataArr[$key]);</div><div class="line">            &#125;<span class="keyword">else</span>&#123;</div><div class="line">                <span class="keyword">if</span>(strpos($val, <span class="string">':'</span>) &gt; <span class="number">0</span>)</div><div class="line">                &#123;</div><div class="line">                    $explode = explode(<span class="string">': '</span>, $trim);</div><div class="line">                    $dataKeyVals[$explode[<span class="number">0</span>]] = $explode[<span class="number">1</span>];</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> $dataKeyVals;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><em>2017/05/21更新</em><br>实现php单个客户端socket连接到多个客户端连接，由使用轮询的方式到接触libevent事件处理，<br>由于libevent不支持php7，转而安装event扩展。</p>
+<p>在处理websocket由于客户端主动关闭窗口发送无法识别的编码处理方式（参考了workerman源码），<br>总得来说php原生支持并发数并不高，需要借助扩展可以支持10w左右的并发数</p>
 
       
 
@@ -291,6 +289,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2017/05/21/生活总会给你一些惊喜/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          生活总会给你一些惊喜
+        
+      </div>
+    </a>
+  
   
     <a href="/2017/04/18/查看centos版本信息/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">查看Linux版本信息</div>
@@ -375,29 +382,21 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
       
       
     
-      
-      
-      
-    
     
 
     <ul style="width: 70%">
     
     
       
-      <li style="width: 25%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
       
         
       
-      <li style="width: 25%" q-on="click: openSlider(e, 'tagcloud')"><a href="javascript:void(0)" q-class="active:tagcloud">标签</a></li>
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
       
         
       
-      <li style="width: 25%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
-      
-        
-      
-      <li style="width: 25%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
       
         
     </ul>
@@ -418,6 +417,10 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
@@ -434,15 +437,19 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">websocket</a>
+                <a href="javascript:void(0)" class="js-tag color1">yilia</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">畅言</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -454,7 +461,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+                <a href="javascript:void(0)" class="js-tag color5">websocket</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">生活</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -463,14 +474,6 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">yilia</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">畅言</a>
               </li>
             
             <div class="clearfix"></div>
@@ -535,6 +538,10 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           
             <li class="search-li">
               <a href="http://www.imim.pw/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>吟梦</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://liyuell.github.io" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>李岳</a>
             </li>
           
         </ul>
