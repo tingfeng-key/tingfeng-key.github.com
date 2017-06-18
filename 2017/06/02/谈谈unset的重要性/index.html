@@ -6,18 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>centos编译nginx | 听风(@tingfeng-key)</title>
+  <title>谈谈unset的重要性 | 听风(@tingfeng-key)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在centos7中编译nginx，记录nginx编译时出现的问题。">
+  <meta name="description" content="记录点滴记录，分享生活，一个码农的博客">
 <meta property="og:type" content="article">
-<meta property="og:title" content="centos编译nginx">
-<meta property="og:url" content="http://yoursite.com/2016/12/21/centos编译nginx/index.html">
+<meta property="og:title" content="谈谈unset的重要性">
+<meta property="og:url" content="http://yoursite.com/2017/06/02/谈谈unset的重要性/index.html">
 <meta property="og:site_name" content="听风(@tingfeng-key)">
-<meta property="og:description" content="在centos7中编译nginx，记录nginx编译时出现的问题。">
-<meta property="og:updated_time" content="2017-06-18T16:20:48.619Z">
+<meta property="og:description" content="记录点滴记录，分享生活，一个码农的博客">
+<meta property="og:updated_time" content="2017-06-02T15:57:30.424Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="centos编译nginx">
-<meta name="twitter:description" content="在centos7中编译nginx，记录nginx编译时出现的问题。">
+<meta name="twitter:title" content="谈谈unset的重要性">
+<meta name="twitter:description" content="记录点滴记录，分享生活，一个码农的博客">
   
     <link rel="alternative" href="/atom.xml" title="听风(@tingfeng-key)" type="application/atom+xml">
   
@@ -163,33 +163,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-centos编译nginx" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-谈谈unset的重要性" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      centos编译nginx
+      谈谈unset的重要性
     </h1>
   
 
         
-        <a href="/2016/12/21/centos编译nginx/" class="archive-article-date">
-  	<time datetime="2016-12-21T07:53:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-21</time>
+        <a href="/2017/06/02/谈谈unset的重要性/" class="archive-article-date">
+  	<time datetime="2017-06-02T15:57:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-02</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在centos7中编译nginx，记录nginx编译时出现的问题。<br><a id="more"></a></p>
-<h2 id="获取源文件"><a href="#获取源文件" class="headerlink" title="获取源文件"></a>获取源文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget http://mirrors.sohu.com/nginx/nginx-1.9.9.tar.gz</div></pre></td></tr></table></figure>
-<h2 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">tar -zxvf nginx-1.9.9.tar.gz</div></pre></td></tr></table></figure>
-<h2 id="nginx编译配置"><a href="#nginx编译配置" class="headerlink" title="nginx编译配置"></a>nginx编译配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cd nginx-1.9.9</div><div class="line"></div><div class="line">./configure --prefix=/server/nginx</div></pre></td></tr></table></figure>
-<h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">make &amp;&amp; install</div></pre></td></tr></table></figure>
-<h2 id="错误及解决方法"><a href="#错误及解决方法" class="headerlink" title="错误及解决方法"></a>错误及解决方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">./configure: error: the HTTP rewrite module requires the PCRE library.</div><div class="line"></div><div class="line">安装pcre-devel解决问题：yum -y install pcre-devel</div><div class="line"></div><div class="line">./configure: error: the HTTP gzip module requires the zlib library.</div><div class="line">You can either disable the module by using –without-http_gzip_module</div><div class="line">option, or install the zlib library into the system, or build the zlib </div><div class="line">library</div><div class="line">statically from the source with nginx by using –with-zlib=&lt;path&gt; option.</div><div class="line"></div><div class="line">解决方案：yum install -y zlib-devel</div></pre></td></tr></table></figure>
-<h2 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h2><h2 id="配置开机启动"><a href="#配置开机启动" class="headerlink" title="配置开机启动"></a>配置开机启动</h2><h2 id="nginx-configure参数"><a href="#nginx-configure参数" class="headerlink" title="nginx configure参数"></a>nginx configure参数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div></pre></td><td class="code"><pre><div class="line">--help 显示本提示信息</div><div class="line">--prefix=PATH 设定安装目录</div><div class="line">--sbin-path=PATH 设定程序文件目录</div><div class="line">--conf-path=PATH 设定配置文件(nginx.conf)目录</div><div class="line">--error-log-path=PATH 设定错误日志目录</div><div class="line">--pid-path=PATH 设定pid文件(nginx.pid)目录</div><div class="line">--lock-path=PATH 设定lock文件(nginx.lock)目录</div><div class="line">--user=USER 设定程序运行的用户环境(www)</div><div class="line">--group=GROUP 设定程序运行的组环境(www)</div><div class="line">--builddir=DIR 设定程序编译目录</div><div class="line">--with-rtsig_module 允许rtsig模块</div><div class="line">--with-select_module 允许select模块(一种轮询模式,不推荐用在高载环境)</div><div class="line">--without-select_module 不使用select模块</div><div class="line">--with-poll_module 允许poll模块(一种轮询模式,不推荐用在高载环境)</div><div class="line">--without-poll_module 不使用poll模块</div><div class="line">--with-http_ssl_module 允许ngx_http_ssl_module模块(Apache对应:mod_ssl)</div><div class="line">--with-http_realip_module 允许ngx_http_realip_module模块(mod_rpaf)</div><div class="line">--with-http_addition_module 允许ngx_http_addition_module模块(mod_layout)</div><div class="line">--with-http_xslt_module 允许ngx_http_xslt_module模块</div><div class="line">--with-http_sub_module 允许ngx_http_sub_module模块</div><div class="line">--with-http_dav_module 允许ngx_http_dav_module模块(mod_dav)</div><div class="line">--with-http_flv_module 允许ngx_http_flv_module模块(mod_flvx)</div><div class="line">--with-http_gzip_static_module 允许ngx_http_gzip_static_module模块(mod_dflate)</div><div class="line">--with-http_random_index_module 允许ngx_http_random_index_module模块(mod_autoindex)</div><div class="line">--with-http_stub_status_module 允许ngx_http_stub_status_module模块(mod_status)</div><div class="line">--without-http_charset_module 不使用ngx_http_charset_module模块</div><div class="line">--without-http_gzip_module 不使用ngx_http_gzip_module模块</div><div class="line">--without-http_ssi_module 不使用ngx_http_ssi_module模块</div><div class="line">--without-http_userid_module 不使用ngx_http_userid_module模块</div><div class="line">--without-http_access_module 不使用ngx_http_access_module模块</div><div class="line">--without-http_auth_basic_module 不使用ngx_http_auth_basic_module模块</div><div class="line">--without-http_autoindex_module 不使用ngx_http_autoindex_module模块</div><div class="line">--without-http_geo_module 不使用ngx_http_geo_module模块</div><div class="line">--without-http_map_module 不使用ngx_http_map_module模块</div><div class="line">--without-http_referer_module 不使用ngx_http_referer_module模块</div><div class="line">--without-http_rewrite_module 不使用ngx_http_rewrite_module模块</div><div class="line">--without-http_proxy_module 不使用ngx_http_proxy_module模块</div><div class="line">--without-http_fastcgi_module 不使用ngx_http_fastcgi_module模块</div><div class="line">--without-http_memcached_module 不使用ngx_http_memcached_module模块</div><div class="line">--without-http_limit_zone_module 不使用ngx_http_limit_zone_module模块</div><div class="line">--without-http_empty_gif_module 不使用ngx_http_empty_gif_module模块</div><div class="line">--without-http_browser_module 不使用ngx_http_browser_module模块</div><div class="line">--without-http_upstream_ip_hash_module 不使用ngx_http_upstream_ip_hash_module模块</div><div class="line">--with-http_perl_module 允许ngx_http_perl_module模块</div><div class="line">--with-perl_modules_path=PATH 设置perl模块路径</div><div class="line">--with-perl=PATH 设置perl库文件路径</div><div class="line">--http-log-path=PATH 设置access log文件路径</div><div class="line">--http-client-body-temp-path=PATH 设置客户端请求临时文件路径</div><div class="line">--http-proxy-temp-path=PATH 设置http proxy临时文件路径</div><div class="line">--http-fastcgi-temp-path=PATH 设置http fastcgi临时文件路径</div><div class="line">--without-http 不使用HTTP server功能</div><div class="line">--with-mail 允许POP3/IMAP4/SMTP代理模块</div><div class="line">--with-mail_ssl_module 允许ngx_mail_ssl_module模块</div><div class="line">--without-mail_pop3_module 不允许ngx_mail_pop3_module模块</div><div class="line">--without-mail_imap_module 不允许ngx_mail_imap_module模块</div><div class="line">--without-mail_smtp_module 不允许ngx_mail_smtp_module模块</div><div class="line">--with-google_perftools_module 允许ngx_google_perftools_module模块(调试用)</div><div class="line">--with-cpp_test_module 允许ngx_cpp_test_module模块</div><div class="line">--add-module=PATH 允许使用外部模块,以及路径</div><div class="line">--with-cc=PATH 设置C编译器路径</div><div class="line">--with-cpp=PATH 设置C预处理路径</div><div class="line">--with-cc-opt=OPTIONS 设置C编译器参数</div><div class="line">--with-ld-opt=OPTIONS 设置连接文件参数</div><div class="line">--with-cpu-opt=CPU 为指定CPU优化,可选参数有:</div><div class="line">          pentium, pentiumpro, pentium3, pentium4,</div><div class="line">          athlon, opteron, sparc32, sparc64, ppc64</div><div class="line">--without-pcre 不使用pcre库文件</div><div class="line">--with-pcre=DIR 设定PCRE库路径</div><div class="line">--with-pcre-opt=OPTIONS 设置PCRE运行参数</div><div class="line">--with-md5=DIR 设定md5库文件路径</div><div class="line">--with-md5-opt=OPTIONS 设置md5运行参数</div><div class="line">--with-md5-asm 使用md5源文件编译</div><div class="line">--with-sha1=DIR 设定sha1库文件路径</div><div class="line">--with-sha1-opt=OPTIONS 设置sha1运行参数</div><div class="line">--with-sha1-asm 使用sha1源文件编译</div><div class="line">--with-zlib=DIR 设定zlib库文件路径</div><div class="line">--with-zlib-opt=OPTIONS 设置zlib运行参数</div><div class="line">--with-zlib-asm=CPU 使zlib对特定的CPU进行优化,可选参数:</div><div class="line">          pentium, pentiumpro</div><div class="line">--with-openssl=DIR 设定OpenSSL库文件路径</div><div class="line">--with-openssl-opt=OPTIONS 设置OpenSSL运行参数</div><div class="line">--with-debug 允许调试日志</div></pre></td></tr></table></figure>
+        
       
 
       
@@ -218,25 +212,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">nginx</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">centos</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -287,7 +262,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/12/21/centos编译nginx/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/06/02/谈谈unset的重要性/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -301,18 +276,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2016/12/21/centos编译php/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          centos编译php
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/12/19/留在大城市还是回老家/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">留在大城市还是回老家</div>
+    <a href="/2017/05/29/当你在使用curl的时候请先尝试file-get-contents/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">当你在使用curl的时候请先尝试file_get_contents</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -327,7 +293,7 @@
   
 
   
-  <div id="SOHUCS" sid="centos编译nginx" ></div> 
+  <div id="SOHUCS" sid="谈谈unset的重要性" ></div> 
 <script type="text/javascript"> 
 (function(){ 
 var appid = "cysXcUQEm"; 
